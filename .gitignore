@@ -1,0 +1,12 @@
+.DS_Store
+node_modules
+dist
+
+*.log
+*.tsbuildinfo
+
+/.env.local
+/.next
+/.sanity
+/coverage
+/logs

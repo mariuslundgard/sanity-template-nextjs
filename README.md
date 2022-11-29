@@ -1,0 +1,1 @@
+# sanity-template-nexjs
