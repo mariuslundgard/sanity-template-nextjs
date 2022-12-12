@@ -2,6 +2,6 @@
 
 import {definePreview} from 'next-sanity/preview'
 
-import {dataset, projectId} from '@/sanity.client'
+import {dataset, projectId} from './env'
 
 export const usePreview = definePreview({projectId, dataset})

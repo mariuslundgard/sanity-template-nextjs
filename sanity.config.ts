@@ -1,31 +1,15 @@
-import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {Config, defineConfig} from 'sanity'
 
-import {schema} from '@/schema'
-import {PagePreview} from '@/schema/page'
+import {dataset, projectId} from './src/sanity/env'
+import {deskTool} from './src/sanity/lib/desk'
+import {schema} from './src/sanity/schema'
 
-export default defineConfig({
+export default defineConfig<Config>({
   basePath: '/studio',
-  name: 'default',
-  title: 'Computed Layouts',
+  dataset,
+  projectId,
+  schema,
+  title: 'Next.js Template',
 
-  projectId: '71npnuha',
-  dataset: 'production',
-
-  plugins: [
-    deskTool({
-      defaultDocumentNode: (S, {schemaType}) => {
-        if (schemaType === 'page') {
-          return S.document().views([
-            S.view.form().title('Content'),
-            S.view.component().title('Preview').component(PagePreview),
-          ])
-        }
-
-        return S.document()
-      },
-    }),
-  ],
-
-  schema: schema,
+  plugins: [deskTool()],
 })

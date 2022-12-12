@@ -5,18 +5,20 @@
   "main": "package.json",
   "license": "MIT",
   "scripts": {
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
     "dev": "next",
     "build": "next build",
-    "start": "sanity start"
+    "start": "next start",
+    "type-check": "tsc"
   },
   "keywords": [
-    "sanity"
+    "sanity",
+    "template",
+    "nextjs"
   ],
   "dependencies": {
     "@next/font": "^13.0.6",
     "@sanity/demo": "^1.0.1",
+    "@sanity/icons": "^2.1.0",
     "@sanity/ui": "^1.0.1",
     "@tailwindcss/typography": "^0.5.8",
     "next": "^13.0.6",
@@ -25,7 +27,8 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "sanity": "^3.0.6",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "suspend-react": "^0.0.8"
   },
   "devDependencies": {
     "@sanity/color": "^2.1.20",
