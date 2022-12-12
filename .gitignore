@@ -8,5 +8,6 @@ dist
 /.env.local
 /.next
 /.sanity
+/.vscode
 /coverage
 /logs
