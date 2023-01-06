@@ -15,7 +15,6 @@ const handler: NextApiHandler = async function preview(req, res) {
   const {query} = req
 
   const secret = isString(query.secret) ? query.secret : undefined
-  // const id = isString(query.id) ? query.id : undefined
   const type = isString(query.type) ? query.type : undefined
   const slug = isString(query.slug) ? query.slug : undefined
 

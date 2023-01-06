@@ -21,7 +21,7 @@ const mono = IBM_Plex_Mono({
   weight: ['500', '700'],
 })
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function Layout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable}`}>
       <head />

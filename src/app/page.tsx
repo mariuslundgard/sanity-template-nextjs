@@ -6,7 +6,7 @@ import {PageScreen} from './[slug]/PageScreen'
 import {PreviewPage} from './[slug]/PreviewPage'
 import {query} from './[slug]/query'
 
-export default async function HomePage() {
+export default async function Page() {
   const slug = 'home'
   const preview = previewData()
 
