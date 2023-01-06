@@ -20,6 +20,7 @@
     "@sanity/demo": "^1.0.1",
     "@sanity/icons": "^2.2.2",
     "@sanity/ui": "^1.0.12",
+    "@sanity/vision": "^3.1.4",
     "@tailwindcss/typography": "^0.5.8",
     "next": "^13.1.1",
     "next-sanity": "^3.1.9",
