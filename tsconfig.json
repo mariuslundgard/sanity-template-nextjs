@@ -4,6 +4,7 @@
     ".next/types/**/*.ts",
     "./next-env.d.ts",
     "./src",
+    "./sanity-env.d.ts",
     "./sanity.cli.ts",
     "./sanity.config.ts"
   ],
