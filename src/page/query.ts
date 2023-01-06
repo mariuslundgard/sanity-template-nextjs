@@ -1,7 +1,7 @@
 import {groq} from 'next-sanity'
 
-export const query = groq`
-  *[slug.current == $slug][0]{
+export const PAGE_DATA_QUERY = groq`
+  *[_type == 'page' && slug.current == $slug][0]{
     title,
     slug,
     content[]{
@@ -15,5 +15,11 @@ export const query = groq`
         }
       }
     }
+  }
+`
+
+export const PAGE_PATHS_QUERY = groq`
+  *[_type == 'page' && defined(slug.current)]{
+    'slug': slug.current
   }
 `
