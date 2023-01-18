@@ -12,8 +12,6 @@ export const projectId = assertValue(
 
 export const readToken = process.env.SANITY_API_READ_TOKEN
 
-export const previewSecretId: `${string}.${string}` = 'preview.secret'
-
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
     throw new Error(errorMessage)

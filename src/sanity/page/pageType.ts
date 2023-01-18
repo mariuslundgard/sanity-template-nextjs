@@ -1,7 +1,8 @@
 import {DocumentIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType, isRecord, isString} from 'sanity'
 
-import {apiVersion, previewSecretId} from '../env'
+import {previewSecretId} from '../constants'
+import {apiVersion} from '../env'
 import {getSecret} from '../secret'
 import {PagePreview} from './PagePreview'
 
