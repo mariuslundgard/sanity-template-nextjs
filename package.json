@@ -49,6 +49,11 @@
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
+  "pnpm": {
+    "overrides": {
+      "@sanity/client": "^6.1.0"
+    }
+  },
   "prettier": {
     "semi": false,
     "printWidth": 100,
