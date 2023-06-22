@@ -1,12 +1,11 @@
-import {GetStaticProps} from 'next'
-import {PreviewSuspense} from 'next-sanity/preview'
+import {GetStaticPaths, GetStaticProps} from 'next'
 
-import {LazyPreviewPage} from '../page/LazyPreviewPage'
-import {LoadingScreen} from '../page/LoadingScreen'
 import {PageScreen} from '../page/PageScreen'
+import {PreviewPage} from '../page/PreviewPage'
+import {PreviewProvider} from '../page/PreviewProvider'
 import {PAGE_DATA_QUERY, PAGE_PATHS_QUERY} from '../page/query'
 import {PageData} from '../page/types'
-import {client} from '../sanity/client'
+import {getClient} from '../sanity/client'
 
 interface PageProps {
   data: PageData | null
@@ -25,6 +24,7 @@ interface PreviewData {
 
 export const getStaticProps: GetStaticProps<PageProps, Query, PreviewData> = async (ctx) => {
   const {params = {}, preview = false, previewData = {}} = ctx
+  const client = getClient(preview ? previewData.token : undefined)
 
   if (preview && previewData.token) {
     return {
@@ -49,7 +49,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query, PreviewData> = asy
   }
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const client = getClient(undefined)
+
   const data = await client.fetch<{slug: string}[] | null>(PAGE_PATHS_QUERY)
 
   return {paths: data?.map((d) => `/${d.slug}`) || [], fallback: false}
@@ -58,11 +60,11 @@ export const getStaticPaths = async () => {
 export default function Page(props: PageProps) {
   const {data, preview, slug, token} = props
 
-  if (preview) {
+  if (preview && token) {
     return (
-      <PreviewSuspense fallback={<LoadingScreen>Loading preview…</LoadingScreen>}>
-        <LazyPreviewPage slug={slug} token={token} />
-      </PreviewSuspense>
+      <PreviewProvider token={token}>
+        <PreviewPage data={data} slug={slug} />
+      </PreviewProvider>
     )
   }
 

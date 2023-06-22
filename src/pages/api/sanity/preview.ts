@@ -1,7 +1,7 @@
 import {NextApiHandler} from 'next'
-import {isString} from 'sanity'
+import {isString, SanityClient} from 'sanity'
 
-import {client} from '../../../sanity/client'
+import {getClient} from '../../../sanity/client'
 import {previewSecretId} from '../../../sanity/constants'
 import {readToken} from '../../../sanity/env'
 import {getSecret} from '../../../sanity/secret'
@@ -25,6 +25,7 @@ const handler: NextApiHandler = async function preview(req, res) {
     return
   }
 
+  const client = getClient(readToken)
   const authClient = client.withConfig({useCdn: false, token: readToken})
 
   // The secret can't be stored in an env variable with a NEXT_PUBLIC_ prefix, as it would make you
@@ -32,7 +33,8 @@ const handler: NextApiHandler = async function preview(req, res) {
   // that can handle checking secrets, you may use https://github.com/sanity-io/sanity-studio-secrets
   // to store the secret in your dataset.
   const storedSecret = await getSecret({
-    client: authClient,
+    // TODO: remove type casting once types are compatible
+    client: authClient as unknown as SanityClient,
     id: previewSecretId,
   })
 

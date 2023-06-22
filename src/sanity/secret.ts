@@ -1,4 +1,5 @@
-import {groq, SanityClient} from 'next-sanity'
+import {groq} from 'next-sanity'
+import {SanityClient} from 'sanity'
 
 import {createRandomUUID} from './lib/uuid'
 
