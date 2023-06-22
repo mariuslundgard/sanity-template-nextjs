@@ -25,7 +25,7 @@ const handler: NextApiHandler = async function preview(req, res) {
     return
   }
 
-  const client = getClient(readToken)
+  const client = getClient(readToken, false)
   const authClient = client.withConfig({useCdn: false, token: readToken})
 
   // The secret can't be stored in an env variable with a NEXT_PUBLIC_ prefix, as it would make you

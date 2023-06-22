@@ -2,14 +2,11 @@ import {createClient, type SanityClient} from 'next-sanity'
 
 import {apiVersion, dataset, projectId, useCdn} from './env'
 
-/**
- * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
- */
-export function getClient(token?: string): SanityClient {
+export function getClient(token?: string, encodeSourceMap = true): SanityClient {
   const client = createClient({
-    projectId,
-    dataset,
     apiVersion,
+    dataset,
+    projectId,
     useCdn,
   })
 
@@ -17,9 +14,23 @@ export function getClient(token?: string): SanityClient {
     return client
   }
 
-  return client.withConfig({
-    token,
-    useCdn: false,
+  if (!encodeSourceMap) {
+    return client.withConfig({
+      ignoreBrowserTokenWarning: true,
+      token,
+      useCdn: false,
+    })
+  }
+
+  return createClient({
+    apiVersion,
+    dataset,
+    encodeSourceMap,
     ignoreBrowserTokenWarning: true,
+    logger: console,
+    projectId,
+    studioUrl: 'http://localhost:3000/studio',
+    token,
+    useCdn,
   })
 }
